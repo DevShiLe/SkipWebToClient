@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <a href="https://itunes.apple.com/cn/app/missevan-m-zhan-yong-sheng/id1009818764" id="openApp">客户端1</a>
+    <a href="missevan://com.missevan.MissEvanApp" id="openApp">客户端2</a>
+    <script type="text/javascript">
+        document.getElementById('openApp').onclick = function(e){
+            // 通过iframe的方式试图打开APP，如果能正常打开，会直接切换到APP，并自动阻止a标签的默认行为
+            // 否则打开a标签的href链接
+            var ifr = document.createElement('iframe');
+            ifr.src = 'missevan://?{"action":”item:id=36615660686”};
+            ifr.style.display = 'none';
+            document.body.appendChild(ifr);
+            
+        };
+    </script>
+    <script type="text/javascript">
+    document.writeln("您的操作系统是：" + navigator.platform );
+    alert(detectOS());
+        </script>
+</body>
+</html>
+

@@ -16,7 +16,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    UIWebView *webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    //取得欲读取档案的位置与文件名
+    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+    NSString *filePath =[resourcePath stringByAppendingPathComponent:@"test.html"];
+
+    //encoding:NSUTF8StringEncoding error:nil 这一段一定要加，不然中文字会乱码
+    
+    NSString * htmlstring=[[NSString alloc]initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    NSLog(@"%@",htmlstring);
+    [webview loadHTMLString:htmlstring baseURL:[NSURL fileURLWithPath:[ [NSBundle mainBundle] bundlePath]]];
+    [self.view addSubview:webview];
 }
 
 - (void)didReceiveMemoryWarning {
